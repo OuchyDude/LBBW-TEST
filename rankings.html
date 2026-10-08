@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LBBW Rankings</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: white;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 70px;
+
+    background: rgba(5,5,5,0.88);
+    backdrop-filter: blur(12px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 50px;
+
+    z-index: 1000;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.logo .lb {
+    color: #e32626;
+}
+
+.logo .bw {
+    color: #287cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.85)
+        ),
+        url("https://upload.wikimedia.org/wikipedia/commons/6/6f/Minecraft_landscape.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-family: 'Anton', sans-serif;
+
+    font-size: clamp(65px, 11vw, 125px);
+
+    letter-spacing: 4px;
+
+    line-height: 0.95;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 .lb {
+    color: #e32626;
+}
+
+.hero h1 .bw {
+    color: #287cff;
+}
+
+.hero p {
+    color: #ddd;
+
+    font-size: 17px;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    line-height: 1.7;
+}
+
+/* =========================
+   GENERAL SECTION
+========================= */
+
+section {
+    padding: 90px 7%;
+}
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-family: 'Anton', sans-serif;
+
+    font-size: 52px;
+
+    letter-spacing: 2px;
+}
+
+.section-title p {
+    color: #999;
+
+    margin-top: 10px;
+
+    font-size: 15px;
+}
+
+/* =========================
+   TOP 10
+========================= */
+
+.top-ten-section {
+    background: #0a0a0a;
+}
+
+.leaderboard {
+    max-width: 1000px;
+
+    margin: auto;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+}
+
+.leaderboard-row {
+    display: grid;
+
+    grid-template-columns:
+        80px
+        1fr
+        150px
+        120px;
+
+    align-items: center;
+
+    padding: 18px 25px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    transition: 0.2s;
+}
+
+.leaderboard-row:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-row:not(.header):hover {
+    background: rgba(255,255,255,0.035);
+}
+
+.leaderboard-row.header {
+    background: #181818;
+
+    color: #777;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.position {
+    font-family: 'Anton', sans-serif;
+
+    font-size: 23px;
+}
+
+.player {
+    font-weight: 700;
+
+    font-size: 15px;
+}
+
+.rank {
+    font-weight: 800;
+}
+
+.wins {
+    color: #aaa;
+
+    font-weight: 600;
+}
+
+/* =========================
+   TOP 3 COLORS
+========================= */
+
+.leaderboard-row:nth-child(2) .position {
+    color: #ffd700;
+}
+
+.leaderboard-row:nth-child(3) .position {
+    color: #c0c0c0;
+}
+
+.leaderboard-row:nth-child(4) .position {
+    color: #cd7f32;
+}
+
+/* =========================
+   TIER COLORS
+========================= */
+
+.ht1 {
+    color: #ffd700;
+}
+
+.lt1 {
+    color: #e6c84f;
+}
+
+.ht2 {
+    color: #ff9d2e;
+}
+
+.lt2 {
+    color: #d56d17;
+}
+
+.ht3 {
+    color: #a86f45;
+}
+
+.lt3,
+.ht4,
+.lt4,
+.ht5,
+.lt5 {
+    color: #aaa;
+}
+
+/* =========================
+   TOP TEN NOTE
+========================= */
+
+.leaderboard-note {
+    max-width: 900px;
+
+    margin: 25px auto 0;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   CURRENT TIERS
+========================= */
+
+.tiers-section {
+    background: #0d0d0d;
+}
+
+.tier-groups {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+/* =========================
+   TIER GROUP
+========================= */
+
+.tier-group {
+    background: #141414;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    transition: 0.25s;
+}
+
+.tier-group:hover {
+    border-color: rgba(255,255,255,0.18);
+
+    transform: translateY(-2px);
+}
+
+.tier-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    background: #191919;
+}
+
+.tier-title {
+    font-family: 'Anton', sans-serif;
+
+    font-size: 27px;
+
+    letter-spacing: 1px;
+}
+
+.tier-placement {
+    color: #777;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.tier-players {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 20px;
+}
+
+/* =========================
+   PLAYER TAGS
+========================= */
+
+.player-tag {
+    padding: 10px 15px;
+
+    background: #1b1b1b;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.player-tag:hover {
+    background: #232323;
+
+    transform: translateY(-2px);
+}
+
+/* =========================
+   TIER GROUP COLORS
+========================= */
+
+.tier-group.ht1 {
+    border-left: 4px solid #ffd700;
+}
+
+.tier-group.lt1 {
+    border-left: 4px solid #e6c84f;
+}
+
+.tier-group.ht2 {
+    border-left: 4px solid #ff9d2e;
+}
+
+.tier-group.lt2 {
+    border-left: 4px solid #d56d17;
+}
+
+.tier-group.ht3 {
+    border-left: 4px solid #a86f45;
+}
+
+.tier-group.lt3,
+.tier-group.ht4,
+.tier-group.lt4,
+.tier-group.ht5,
+.tier-group.lt5 {
+    border-left: 4px solid #777;
+}
+
+/* =========================
+   TIER DESCRIPTIONS
+========================= */
+
+.tier-description {
+    padding: 0 20px 18px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   INFO SECTION
+========================= */
+
+.info-section {
+    background: #0a0a0a;
+
+    text-align: center;
+}
+
+.info-box {
+    max-width: 850px;
+
+    margin: auto;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 14px;
+
+    padding: 30px;
+}
+
+.info-box h3 {
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+.info-box p {
+    color: #999;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    background: #050505;
+
+    color: #666;
+
+    font-size: 13px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+footer .disclaimer {
+    margin-top: 8px;
+
+    color: #444;
+
+    font-size: 11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    nav {
+        height: auto;
+
+        min-height: 70px;
+
+        padding: 15px 20px;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 14px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .leaderboard-row {
+        grid-template-columns:
+            55px
+            1fr
+            100px
+            80px;
+
+        padding: 16px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    section {
+        padding: 70px 5%;
+    }
+
+    .section-title h2 {
+        font-size: 42px;
+    }
+
+    .leaderboard-row {
+        grid-template-columns:
+            45px
+            1fr
+            75px;
+    }
+
+    .leaderboard-row .wins {
+        display: none;
+    }
+
+    .leaderboard-row.header .wins {
+        display: none;
+    }
+
+    .tier-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        <span class="lb">LB</span><span class="bw">BW</span>
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="rankings.html">
+                Rankings
+            </a>
+        </li>
+
+        <li>
+            <a href="halloffame.html">
+                Hall of Fame
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html#testing">
+                Tier Testing
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html#staff">
+                Staff
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html#rules">
+                Rules
+            </a>
+        </li>
+
+        <li>
+            <a href="https://discord.gg/JuKMwT6PF" target="_blank">
+                Discord
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            <span class="lb">LB</span><span class="bw">BW</span>
+            RANKINGS
+        </h1>
+
+        <p>
+            Track the best BedWars players in the LBBW community.
+            The Top 10 leaderboard is determined by wins, while
+            current tiers represent each player's competitive skill.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TOP 10 LEADERBOARD
+========================= -->
+
+<section class="top-ten-section">
+
+    <div class="section-title">
+
+        <h2>TOP 10 LEADERBOARD</h2>
+
+        <p>
+            Ranked by total verified wins.
+        </p>
+
+    </div>
+
+    <div class="leaderboard">
+
+        <!-- The Top 10 is generated automatically from rankings-data.js -->
+
+    </div>
+
+    <div class="leaderboard-note">
+
+        The Top 10 leaderboard is based on verified wins and is
+        separate from tier placement. Wins can be updated as players
+        submit valid proof of their games.
+
+    </div>
+
+</section>
+
+<!-- =========================
+     CURRENT TIER RANKINGS
+========================= -->
+
+<section class="tiers-section">
+
+    <div class="section-title">
+
+        <h2>CURRENT TIER RANKINGS</h2>
+
+        <p>
+            Every currently ranked player in the LBBW community.
+        </p>
+
+    </div>
+
+    <div class="tier-groups">
+
+        <!-- =========================
+             HT1
+        ========================= -->
+
+        <div class="tier-group ht1">
+
+            <div class="tier-header">
+
+                <div class="tier-title ht1">
+                    HT1
+                </div>
+
+                <div class="tier-placement">
+                    TOP 3
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Highest competitive tier. Reserved for the strongest
+                players in the community.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Rust
+                </div>
+
+                <div class="player-tag">
+                    Dark
+                </div>
+
+                <div class="player-tag">
+                    DayTexing
+                </div>
+
+                <div class="player-tag">
+                    FluffiesMC
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LT1
+        ========================= -->
+
+        <div class="tier-group lt1">
+
+            <div class="tier-header">
+
+                <div class="tier-title lt1">
+                    LT1
+                </div>
+
+                <div class="tier-placement">
+                    TOP 10
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Elite competitive players just below HT1.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    cianites
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             HT2
+        ========================= -->
+
+        <div class="tier-group ht2">
+
+            <div class="tier-header">
+
+                <div class="tier-title ht2">
+                    HT2
+                </div>
+
+                <div class="tier-placement">
+                    TOP 20
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Highly skilled competitive players with strong
+                overall BedWars ability.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    c
+                </div>
+
+                <div class="player-tag">
+                    Omar
+                </div>
+
+                <div class="player-tag">
+                    welltag
+                </div>
+
+                <div class="player-tag">
+                    Thelyric
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LT2
+        ========================= -->
+
+        <div class="tier-group lt2">
+
+            <div class="tier-header">
+
+                <div class="tier-title lt2">
+                    LT2
+                </div>
+
+                <div class="tier-placement">
+                    TOP 50
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Strong competitive players with consistent
+                high-level performance.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    DKnoxbox
+                </div>
+
+                <div class="player-tag">
+                    Carved
+                </div>
+
+                <div class="player-tag">
+                    malloy75
+                </div>
+
+                <div class="player-tag">
+                    NO one
+                </div>
+
+                <div class="player-tag">
+                    RedHeadGamer
+                </div>
+
+                <div class="player-tag">
+                    Louigi787
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             HT3
+        ========================= -->
+
+        <div class="tier-group ht3">
+
+            <div class="tier-header">
+
+                <div class="tier-title ht3">
+                    HT3
+                </div>
+
+                <div class="tier-placement">
+                    TOP 200
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Competitive players with strong fundamentals
+                and proven BedWars skill.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Fluffie
+                </div>
+
+                <div class="player-tag">
+                    baloni
+                </div>
+
+                <div class="player-tag">
+                    yook
+                </div>
+
+                <div class="player-tag">
+                    sala
+                </div>
+
+                <div class="player-tag">
+                    Eytomar
+                </div>
+
+                <div class="player-tag">
+                    Void
+                </div>
+
+                <div class="player-tag">
+                    Ouch_Dude
+                </div>
+
+                <div class="player-tag">
+                    lkuder
+                </div>
+
+                <div class="player-tag">
+                    Twirly
+                </div>
+
+                <div class="player-tag">
+                    CAMDYN
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LT3
+        ========================= -->
+
+        <div class="tier-group lt3">
+
+            <div class="tier-header">
+
+                <div class="tier-title lt3">
+                    LT3
+                </div>
+
+                <div class="tier-placement">
+                    TOP 500
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Experienced competitive players with developing
+                high-level consistency.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Acutepaper
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             HT4
+        ========================= -->
+
+        <div class="tier-group ht4">
+
+            <div class="tier-header">
+
+                <div class="tier-title ht4">
+                    HT4
+                </div>
+
+                <div class="tier-placement">
+                    TOP 600
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Skilled players with solid fundamentals and
+                competitive experience.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Psyduck?
+                </div>
+
+                <div class="player-tag">
+                    Sans-Sama
+                </div>
+
+                <div class="player-tag">
+                    Vanta
+                </div>
+
+                <div class="player-tag">
+                    Babyradar01
+                </div>
+
+                <div class="player-tag">
+                    LJ
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LT4
+        ========================= -->
+
+        <div class="tier-group lt4">
+
+            <div class="tier-header">
+
+                <div class="tier-title lt4">
+                    LT4
+                </div>
+
+                <div class="tier-placement">
+                    TOP 800
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Developing competitive players with a solid
+                understanding of BedWars.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Chumply
+                </div>
+
+                <div class="player-tag">
+                    Robotic
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             HT5
+        ========================= -->
+
+        <div class="tier-group ht5">
+
+            <div class="tier-header">
+
+                <div class="tier-title ht5">
+                    HT5
+                </div>
+
+                <div class="tier-placement">
+                    TOP 1,000
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Competitive players building their skills and
+                gaining more testing experience.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Unknownghost
+                </div>
+
+                <div class="player-tag">
+                    T-man3030
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LT5
+        ========================= -->
+
+        <div class="tier-group lt5">
+
+            <div class="tier-header">
+
+                <div class="tier-title lt5">
+                    LT5
+                </div>
+
+                <div class="tier-placement">
+                    TOP 10,000
+                </div>
+
+            </div>
+
+            <div class="tier-description">
+                Entry-level competitive tier for players who have
+                completed testing and entered the LBBW ranking system.
+            </div>
+
+            <div class="tier-players">
+
+                <div class="player-tag">
+                    Dev
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RANKING INFORMATION
+========================= -->
+
+<section class="info-section">
+
+    <div class="section-title">
+
+        <h2>HOW RANKINGS WORK</h2>
+
+        <p>
+            Tier placement and leaderboard position are two different things.
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>
+            Tiers vs. Wins
+        </h3>
+
+        <p>
+            A player's tier represents their competitive skill and is
+            determined through tier testing. The Top 10 leaderboard is
+            separate and is based on verified wins. This means a player
+            can have a high competitive tier without being in the Top 10,
+            while another player can climb the leaderboard through wins.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        LBBW BedWars Community
+    </div>
+
+    <div class="disclaimer">
+        This is not an official Lifeboat server.
+        Please understand this is an unofficial Lifeboat BedWars server.
+    </div>
+
+</footer>
+
+<script src="rankings-data.js"></script>
+<script>
+
+const leaderboard = document.querySelector(".leaderboard");
+
+if (leaderboard && typeof top10 !== "undefined") {
+
+    leaderboard.innerHTML = `
+        <div class="leaderboard-row header">
+
+            <div>
+                #
+            </div>
+
+            <div>
+                PLAYER
+            </div>
+
+            <div>
+                RANK
+            </div>
+
+            <div class="wins">
+                WINS
+            </div>
+
+        </div>
+    `;
+
+    top10.forEach((player, index) => {
+
+        leaderboard.innerHTML += `
+
+            <div class="leaderboard-row">
+
+                <div class="position">
+                    ${index + 1}
+                </div>
+
+                <div class="player">
+                    ${player.name}
+                </div>
+
+                <div class="rank ${player.tier.toLowerCase()}">
+                    ${player.tier}
+                </div>
+
+                <div class="wins">
+                    ${player.wins}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
